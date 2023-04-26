@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  php-apache:
+    container_name: LampV4_Apache
+    ports:
+      - "80:80"
+    build: './build/php'
+    volumes:
+      - ./app:/var/www/html
+  mysql:
+    container_name: LampV4_MySQL
+    hostname: mysql_local
+    ports:
+      - "3306:3306"
+    build: './build/mysql'
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      MYSQL_ROOT_PASSWORD: "testpwd"
+      MYSQL_DATABASE: "beta"
+    volumes:
+      - dbData:/var/lib/mysql
+      - ./beta_tbl.sql:/docker-entrypoint-initdb.d/beta_tbl.sql
+  phpmyadmin:
+      container_name: LampV4_PHPMyAdmin
+      image: phpmyadmin/phpmyadmin:latest
+      environment:
+          PMA_HOST: mysql
+          PMA_USER: root
+          PMA_PASSWORD: testpwd
+      ports:
+          - "8081:80"
+      restart: always
+volumes:
+  app:
+  dbData:
