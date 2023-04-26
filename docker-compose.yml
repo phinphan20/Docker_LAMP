@@ -1,14 +1,14 @@
 version: "3.9"
 services:
   php-apache:
-    container_name: LampV4_Apache
+    container_name: Lamp_Apache
     ports:
       - "80:80"
     build: './build/php'
     volumes:
       - ./app:/var/www/html
   mysql:
-    container_name: LampV4_MySQL
+    container_name: Lamp_MySQL
     hostname: mysql_local
     ports:
       - "3306:3306"
@@ -21,7 +21,7 @@ services:
       - dbData:/var/lib/mysql
       - ./beta_tbl.sql:/docker-entrypoint-initdb.d/beta_tbl.sql
   phpmyadmin:
-      container_name: LampV4_PHPMyAdmin
+      container_name: Lamp_PHPMyAdmin
       image: phpmyadmin/phpmyadmin:latest
       environment:
           PMA_HOST: mysql
