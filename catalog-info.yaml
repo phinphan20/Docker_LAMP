@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: Docker_LAMP
+  annotations:
+    github.com/project-slug: phinphan20/Docker_LAMP
+spec:
+  type: other
+  lifecycle: unknown
+  owner: guests
